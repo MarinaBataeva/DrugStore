@@ -1,10 +1,10 @@
 ﻿using Npgsql;
 using System;
-using System.Data.SqlClient;
 namespace DrugStore
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             string exit = "y";
@@ -71,20 +71,10 @@ namespace DrugStore
     }
     class dbConnection
     {
-        private static void CreateCommand(string queryString,
-    string connectionString)
-        {
-            using (SqlConnection connection = new SqlConnection(
-                       connectionString))
-            {
-                SqlCommand command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
+        static string conn_param = "Server=127.0.0.1;Port=5432;User Id=postgres;Password=1;Database=ds_database;";
+
         public static string EditProduct(string value)
         {
-            string conn_param = "Server=127.0.0.1;Port=5432;User Id=postgres;Password=1;Database=ds_database;";
             Console.Write("Enter product name: ");
             string product_name = Console.ReadLine();
 
@@ -126,7 +116,6 @@ namespace DrugStore
 
         public static string EditDrugstore(string value)
         {
-            string conn_param = "Server=127.0.0.1;Port=5432;User Id=postgres;Password=1;Database=ds_database;";
             Console.Write("Enter drugstore name: ");
             string drugstore_name = Console.ReadLine();
 
@@ -173,7 +162,6 @@ namespace DrugStore
         }
         public static string EditStorage(string value)
         {
-            string conn_param = "Server=127.0.0.1;Port=5432;User Id=postgres;Password=1;Database=ds_database;";
             Console.Write("Enter storage name: ");
             string storage_name = Console.ReadLine();
 
@@ -216,8 +204,6 @@ namespace DrugStore
         }
         public static string EditGoods(string value)
         {
-            string conn_param = "Server=127.0.0.1;Port=5432;User Id=postgres;Password=1;Database=ds_database;";
-
             if (value == "c")
             {
                 Console.Write("Enter product name: ");
@@ -265,7 +251,6 @@ namespace DrugStore
         }
         public static string InventoryInformation(string value)
         {
-            string conn_param = "Server=127.0.0.1;Port=5432;User Id=postgres;Password=1;Database=ds_database;";
             string sql =
                 $"select  pd.product_name, sum(gd.goods_count)" +
                 $"from goods gd " +
